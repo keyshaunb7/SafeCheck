@@ -35,6 +35,10 @@ public class SafetyRepository {
         return safetyCheckDao.getCheckWithDefects(checkId);
     }
 
+    public LiveData<List<Defect>> getDefectsForCheck(int checkId) {
+        return safetyCheckDao.getDefectsForCheck(checkId);
+    }
+
     public void insertSafetyCheckWithDefects(SafetyCheck safetyCheck, List<Defect> defects) {
         executorService.execute(() -> {
             long newCheckId = safetyCheckDao.insertSafetyCheck(safetyCheck);
@@ -56,4 +60,6 @@ public class SafetyRepository {
     public void deleteSafetyCheckById(int checkId) {
         executorService.execute(() -> safetyCheckDao.deleteSafetyCheckById(checkId));
     }
+
+
 }

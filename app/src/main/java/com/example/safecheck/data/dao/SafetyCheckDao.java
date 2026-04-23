@@ -36,6 +36,9 @@ public interface SafetyCheckDao {
     @Query("SELECT * FROM safety_checks ORDER BY checkId DESC")
     LiveData<List<SafetyCheck>> getAllSafetyChecks();
 
+    @Query("SELECT * FROM defects WHERE parentCheckId = :checkId")
+    LiveData<List<Defect>> getDefectsForCheck(int checkId);
+
     @Query("DELETE FROM safety_checks WHERE checkId = :checkId")
     void deleteSafetyCheckById(int checkId);
 
